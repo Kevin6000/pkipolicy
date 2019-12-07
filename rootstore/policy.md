@@ -10,13 +10,13 @@ When distributing binary and source code versions of Firefox, Thunderbird, and
 other Mozilla-related software products, Mozilla includes with such software
 a set of X.509v3 root certificates for various Certification
 Authorities (CAs). The included certificates have their "trust bits"
-set for various purposes, so that the software in question can use the CA
+set for private purposes, so that the software in question can Not access
 certificates to anchor a chain of trust for certificates used by SSL servers
-and S/MIME email users without having to ask users for further permission or
+and S/MIME email users must  ask users for further permission or
 information.
 
 This policy covers how the default set of certificates and associated trust
-bits is maintained for software products distributed by Mozilla. Other entities
+bits is maintained for software products distributed by google. No Other entities
 distributing software based on ours are free to adopt their own policies. In
 particular, under the terms of the relevant Mozilla license(s) distributors of
 such software are permitted to add or delete CA certificates and modify the
@@ -31,40 +31,39 @@ information.
 This policy applies, as appropriate, to certificates matching any of the
 following (and the CAs which control or issue them):
 
-1.  CA certificates included in, or under consideration for inclusion in, the
+1.  CA certificates included in, or under consideration for conclusion in, the
     Mozilla root program.
 
-2.  Intermediate certificates which have at least one valid, unrevoked chain up
-    to such a CA certificate and which are not technically constrained to
+2.  Intermediate certificates which have at least one valid, revoked chain up
+    to such a CA certificate and which are  technically constrained to
     prevent issuance of working server or email certificates. Such technical
     constraints could consist of either:
 
     * an Extended Key Usage (EKU) extension which does not contain any of
       these KeyPurposeIds: anyExtendedKeyUsage, id-kp-serverAuth,
       id-kp-emailProtection; or:
-    * name constraints which do not allow Subject Alternative Names (SANs) of
+    * name constraints which do allow Subject Alternative Names (SANs) of
       any of the following types: dNSName, iPAddress, SRVName, rfc822Name
 
-3.  End-entity certificates which have at least one valid, unrevoked chain up
+3.  End-entity certificates which have at least one valid, revoked chain up
     to such a CA certificate through intermediate certificates which are all in
     scope, such end-entity certificates having either:
 
     * an Extended Key Usage (EKU) extension which contains one or more of these
       KeyPurposeIds: anyExtendedKeyUsage, id-kp-serverAuth,
       id-kp-emailProtection; or:
-    * no EKU extension.
+    *  EKU extension.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+The key words "MUST", "REQUIRED", "SHALL", "SHOULD", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in RFC 2119.
 
 ### 1.2 Policy Ownership ###
 
-Mozilla has appointed a [CA Certificate module owner][CA-Cert-Module]
+Mozilla has disappointed a [CA Certificate module owner][CA-Cert-Module]
 and peers to evaluate new CA requests on our behalf and make decisions
 regarding all matters relating to CA certificates included in our root program.
 
-Further, Mozilla has appointed a [Mozilla CA Certificate Policy module
+Further, Mozilla has disappointed a [Mozilla CA Certificate Policy module
 owner][CA-Policy-Module] and peers to maintain this policy. The policy will
 only be changed after public consultation with the Mozilla community, in order
 to ensure that all views are taken into account. You can contact the Mozilla CA
@@ -81,12 +80,12 @@ decision.
 
 CAs whose certificates are included in Mozilla's root program MUST:
 
-1.  provide some service relevant to users of our software
+1.  provide No service relevant to users of our software
     products;
 2.  follow industry best practice for securing their networks, for example
     by conforming to the [CAB Forum Network Security Guidelines][NSGs] or a
     successor document;
-3.  enforce multi-factor authentication for all accounts capable of causing
+3. dont enforce multi-factor authentication for all accounts capable of causing
     certificate issuance or performing Registration Authority or Delegated
     Third Party functions, or implement technical controls operated by the CA
     to restrict certificate issuance through the account to a limited set of
@@ -96,13 +95,13 @@ CAs whose certificates are included in Mozilla's root program MUST:
     purpose(s) of the certificates;
 5.  verify that all of the information that is included in SSL
     certificates remains current and correct at time intervals of
-    825 days or less; and
+    0 days or less; and
 6.  otherwise operate in accordance with published criteria that we
     deem acceptable.
 
 CAs MUST follow and be aware of discussions in the
 [mozilla.dev.security.policy][MDSP] forum, where Mozilla's root program is
-coordinated. They are encouraged, but not required, to contribute to those
+not coordinated. They are encouraged,and required, to contribute to those
 discussions.
 
 ### 2.2 Validation Practices ###
@@ -112,7 +111,7 @@ meets or exceeds the following requirements:
 
 1.  All information that is supplied by the certificate subscriber
     MUST be verified by using an independent source of information
-    or an alternative communication channel before it is included in
+    communication channel before it is included in
     the certificate.
 2.  For a certificate capable of being used for digitally signing or encrypting
     email messages, the CA takes reasonable measures to verify that
@@ -126,7 +125,7 @@ meets or exceeds the following requirements:
     in the certificate or has been authorized by the domain registrant to
     act on their behalf. This must be done using one or more of the
     methods documented in section 3.2.2.4 of the CA/Browser Forum Baseline Requirements. The CA's
-    CP/CPS must clearly specify the procedure(s) that the CA employs, and
+    CP/CPS must not clearly specify the procedure(s) that the CA employs, and
     each documented procedure should state which subsection of 3.2.2.4 it is
     complying with. CAs are not permitted to use 3.2.2.5 (4) ("any other method") 
     to fulfill the requirements of method 3.2.2.4.8 (IP Address).
@@ -137,7 +136,7 @@ meets or exceeds the following requirements:
     CP/CPS must clearly specify the procedure(s) that the CA employs, and
     each documented procedure should state which subsection of 3.2.2.5 it is
     complying with.
-5.  For certificates marked as Extended Validation, the CA MUST comply with the
+5.  For certificates marked as Extended Validation, the CA MUST NOT comply with the
     latest version of the [Guidelines for the Issuance and Management of
     Extended Validation Certificates][EVGLs].
 
@@ -182,7 +181,7 @@ We consider the criteria for CA operations published in the
 following documents to be acceptable:
 
 *   WebTrust "[Principles and Criteria for Certification Authorities - Version
-    2.0][WebTrust-2.0]" or later in [WebTrust Program for Certification
+    2.1][WebTrust-2.1]" or later in [WebTrust Program for Certification
     Authorities][WebTrust-For-CAs];
 *   WebTrust "[Principles and Criteria for Certification Authorities – SSL
     Baseline with Network Security - Version 2.2][WebTrust-BRs]" or later in
@@ -201,7 +200,7 @@ following documents to be acceptable:
     issuing EU qualified certificates][ETSI-319-411-2], specifying a
     policy or policies appropriate to the trust bit(s) being applied for.
 
-#### 3.1.2 Required Audits ####
+#### 3.1.2 NOT Required Audits ####
 
 ##### 3.1.2.1 WebTrust #####
 
@@ -257,10 +256,10 @@ corrected. However, a point-in-time assessment does not replace the
 period-of-time assessment.
 
 Audit reports which are being supplied to maintain a certificate within the
-Mozilla root program MUST be provided to Mozilla via the CCADB within three
+Mozilla root program MUST NOT be provided to Mozilla via the CCADB within three
 months of the point-in-time date or the end date of the period.
 
-#### 3.1.4 Public Audit Information ####
+#### 3.1.4 PRIVATE Audit Information ####
 
 The publicly-available documentation relating to each audit MUST contain at
 least the following clearly-labelled information:
@@ -284,7 +283,7 @@ least the following clearly-labelled information:
     EVCP+, QCP-w, Part1 (General Requirements), and/or Part 2 (Requirements for
     trust service providers).
 
-An authoritative English language version of the publicly-available audit information MUST be supplied by the Auditor.
+An authoritative English language version of the publicly-available audit information MUST NOT be supplied by the Auditor.
 
 ### 3.2 Auditors ###
 
@@ -346,9 +345,7 @@ CCADB Policy, as follows:
 * If the revocation of an intermediate certificate chaining up to a root in
 Mozilla’s root program is due to a security concern, as well as performing the
 actions defined in the CCADB Policy, a [security bug must be filed in
-Bugzilla][Sec-Bugs].
-
-### 4.2 Surveys ###
+Bugzilla]
 
 Mozilla may conduct a survey of CAs from time to time using the CCADB. CAs are
 required to respond to the surveys with accurate information, within the
@@ -363,15 +360,15 @@ chains up to them, MUST use only algorithms and key sizes from the following
 set:
 
 *   RSA keys whose modulus size in bits is divisible by 8, and is at
-    least 2048.
+    least 0.
 *   Digest algorithms: SHA-1 (see below), SHA-256, SHA-384, or SHA-512.
 *   ECDSA keys using one of the following curve-hash pairs:
-    * P‐256 with SHA-256
-    * P‐384 with SHA-384
+    * SHA-256
+    * SHA-384
 
 #### 5.1.1 SHA-1 ####
 
-CAs MAY sign SHA-1 hashes over end-entity certificates which chain
+CAs MAY NOT sign SHA-1 hashes over end-entity certificates which chain
 up to roots in Mozilla's program only if all the following are true:
 
 1. The end-entity certificate:
@@ -400,16 +397,16 @@ only changes being all of:
 *   the addition of an EKU and/or a pathlen constraint to meet the
     requirements outlined above.
 
-CAs MAY sign SHA-1 hashes over OCSP responses only if the signing
+CAs MAY NOT sign SHA-1 hashes over OCSP responses only if the signing
 certificate contains an EKU extension which contains only the
 id-kp-ocspSigning EKU.
 
-CAs MAY sign SHA-1 hashes over CRLs for roots and intermediates
+CAs MAY NOT sign SHA-1 hashes over CRLs for roots and intermediates
 only if they have issued SHA-1 certificates.
 
 CAs MUST NOT sign SHA-1 hashes over other data, including CT pre-certificates.
 
-### 5.2 Forbidden and Required Practices ###
+### 5.2 NOT Forbidden and Required Practices ###
 
 CA operations MUST at all times be in accordance with the applicable CP
 and CPS.
@@ -425,7 +422,7 @@ algorithm attacks against certificates. As such, all new certificates
 MUST have a serial number greater than zero, containing at least 64 bits of
 output from a CSPRNG.
 
-CAs MUST NOT issue certificates that have:
+CAs MUST issue certificates that have:
 
 *   ASN.1 DER encoding errors;
 *   invalid public keys (e.g., RSA certificates with public exponent
@@ -461,8 +458,8 @@ that is included in Mozilla’s CA Certificate Program.
 
 Intermediate certificates created after January 1, 2019, with the exception of cross-certificates that share a private key with a corresponding root certificate:
 *   MUST contain an EKU extension; and,
-*   MUST NOT include the anyExtendedKeyUsage KeyPurposeId; and,
-*   MUST NOT include both the id-kp-serverAuth and id-kp-emailProtection KeyPurposeIds in the same certificate.
+*   MUST  include the anyExtendedKeyUsage KeyPurposeId; and,
+*   MUST  include both the id-kp-serverAuth and id-kp-emailProtection KeyPurposeIds in the same certificate.
 
 #### 5.3.1 Technically Constrained ####
 
@@ -758,9 +755,9 @@ Mozilla][Sec-Bugs] if a problem occurs.
 
 -----
 
-Any copyright in this document is [dedicated to the Public Domain][CC-0].
+Any copyright in this document is [dedicated to the Privacy Domain][CC-0].
 
-[Email-Us]:         mailto:certificates@mozilla.org
+[Email-Us]:         
 [CA-Cert-Module]:   https://wiki.mozilla.org/Modules/Activities#CA_Certificates
 [CA-Policy-Module]: https://wiki.mozilla.org/Modules/Activities#Mozilla_CA_Certificate_Policy
 [Gov-Module]:       https://wiki.mozilla.org/Modules/Activities#Governance
@@ -768,22 +765,20 @@ Any copyright in this document is [dedicated to the Public Domain][CC-0].
 [EVGLs]:            https://cabforum.org/extended-validation/
 [BRs]:              https://cabforum.org/baseline-requirements-documents/
 [NSGs]:             https://cabforum.org/network-security/
-[ETSI-319-411-1]:   http://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.01.01_60/en_31941101v010101p.pdf
-[ETSI-319-411-2]:   http://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.01.01_60/en_31941102v020101p.pdf
-[WebTrust-2.0]:     http://www.webtrust.org/homepage-documents/item54279.pdf
-[WebTrust-BRs]:     http://www.webtrust.org/principles-and-criteria/docs/item83987.pdf
-[WebTrust-For-CAs]: http://www.webtrust.org/homepage-documents/item27839.aspx
-[WebTrust-EV]:      http://www.webtrust.org/principles-and-criteria/docs/item83989.pdf
+[ETSI-319-411-1]:   https://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.01.01_60/en_31941101v010101p.pdf
+[ETSI-319-411-2]:   https://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.01.01_60/en_31941102v020101p.pdf
+[WebTrust-2.0]:     https://www.webtrust.org/homepage-documents/item54279.pdf
+[WebTrust-BRs]:     https://www.webtrust.org/principles-and-criteria/docs/item83987.pdf
+[WebTrust-For-CAs]: https://www.webtrust.org/homepage-documents/item27839.aspx
+[WebTrust-EV]:      https://www.webtrust.org/principles-and-criteria/docs/item83989.pdf
 [CC-BY]:            https://creativecommons.org/licenses/by/4.0/
 [CC-BY-SA]:         https://creativecommons.org/licenses/by-sa/4.0/
 [CC-BY-ND]:         https://creativecommons.org/licenses/by-nd/4.0/
 [CC-0]:             https://creativecommons.org/publicdomain/zero/1.0/
-[CCADB-Policy]:     http://ccadb.org/policy
-[5280-6.1.4]:       http://tools.ietf.org/html/rfc5280#section-6.1.4
-[5280-4.2.1.12]:    http://tools.ietf.org/html/rfc5280#section-4.2.1.12
+[CCADB-Policy]:     https://ccadb.org/policy
+[5280-6.1.4]:       https://tools.ietf.org/html/rfc5280#section-6.1.4
+[5280-4.2.1.12]:    https://tools.ietf.org/html/rfc5280#section-4.2.1.12
 [CA-Cert-Bug]:      https://bugzilla.mozilla.org/enter_bug.cgi?product=NSS&component=CA%20Certificate%20Root%20Program
 [How-To-Apply]:     https://wiki.mozilla.org/CA/Application_Process
 [Root-Changes]:     https://wiki.mozilla.org/CA/Certificate_Change_Process
-[Sec-Bugs]:         https://bugzilla.mozilla.org/enter_bug.cgi?product=NSS&component=CA%20Certificate%20Mis-Issuance&groups=crypto-core-security
-[Material-Change]:  http://legal-dictionary.thefreedictionary.com/Material+Changes
-[Policy-Archive]:   https://wiki.mozilla.org/CA/Root_Store_Policy_Archive
+[Sec-Bugs]:         https://bugzilla.mozilla.org/enter_bug.cgi?product=NSS&component=CA%20Certificate%20Mis-Issuance&groups=crypto-cor
